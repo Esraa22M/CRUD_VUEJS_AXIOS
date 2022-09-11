@@ -1,12 +1,16 @@
 <template>
-  <div id="app">
-    <h2 class="text-center my-4 primary-color">CRUD Application</h2>
-    <router-view />
+  <div>
+    <NavbarComponent />
+    <router-view></router-view>
   </div>
 </template>
 <script>
+import NavbarComponent from "./components/NavbarComponent.vue";
 export default {
   name: "App",
+  components: {
+    NavbarComponent,
+  },
 };
 </script>
 <style></style>

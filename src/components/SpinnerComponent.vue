@@ -1,9 +1,9 @@
 <template>
-  <h2>edit</h2>
+  <h2>Spinner</h2>
 </template>
 <script>
 export default {
-  name: "EditOne",
+  name: "SpinnerComponent",
 };
 </script>
 <style scoped></style>
