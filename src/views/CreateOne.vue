@@ -76,7 +76,6 @@ export default {
           this.user
         );
 
-        console.log(user);
         if (user) {
           return this.$router.push("/");
         } else {

@@ -71,7 +71,10 @@
               <div
                 class="col-2 d-flex justify-content-center align-items-center flex-column"
               >
-                <router-link to="/users/view/:id" class="btn btn-dark mb-1">
+                <router-link
+                  :to="`/users/view/${user.id}`"
+                  class="btn btn-dark mb-1"
+                >
                   <i class="fa fa-eye"></i>
                 </router-link>
                 <router-link to="/users/edit/:id" class="btn btn-dark mb-1">
@@ -113,7 +116,6 @@ export default {
         );
 
         this.users = users.data;
-        console.log(users);
         this.loading = false;
       } catch (err) {
         this.errMessage = err;
