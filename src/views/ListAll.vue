@@ -113,6 +113,7 @@ export default {
         );
 
         this.users = users.data;
+        console.log(users);
         this.loading = false;
       } catch (err) {
         this.errMessage = err;

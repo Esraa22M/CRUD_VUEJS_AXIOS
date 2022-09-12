@@ -6,37 +6,36 @@
       </div>
     </div>
     <div class="row mt-3">
-      <form class="col-md-4 p-4 shadow-lg">
+      <form class="col-md-4 p-4 shadow-lg" @submit.prevent="submitCreate">
         <div class="form-group">
           <label for="InputName" class="sr-only">Name</label>
           <input
             type="text"
             class="form-control mb-2"
             id="inputName"
+            v-model="user.name"
             aria-describedby="Name"
             placeholder="Enter Name"
+            @blur="validateEmail"
           />
           <label for="exampleInputEmail1" class="sr-only">Email address</label>
           <input
             type="email"
+            v-model="user.email"
             class="form-control mb-2"
-            id="exampleInputEmail1"
+            id="InputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
           />
-        </div>
-        <p class="mt-2 sr-only">Gender</p>
-        <div class="d-flex justify-content-around">
-          <div>
-            <label for="gender-male">Male</label>
-
-            <input type="radio" id="gender" name="gender" value="0" />
-          </div>
-          <div class="mb-2">
-            <label for="gender-email">female</label>
-
-            <input type="radio" id="gender-female" name="gender" value="1" />
-          </div>
+          <span class="text-danger">{{ email }}</span>
+          <input
+            type="phone"
+            v-model="user.phone"
+            class="form-control my-2"
+            id="InputPhone"
+            aria-describedby="phoneHelp"
+            placeholder="Enter Phone"
+          />
         </div>
 
         <button type="submit" class="btn btn-dark mb-2">Add</button>
@@ -45,8 +44,49 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "CreateOne",
+  data: function () {
+    return {
+      email: "",
+      user: {
+        name: "",
+        username: "",
+        email: "",
+        address: {},
+        phone: "",
+        website: "",
+        company: {},
+      },
+    };
+  },
+  methods: {
+    validateEmail() {
+      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
+        this.email = "Invalid Email";
+      } else {
+        this.email = "";
+      }
+    },
+    submitCreate: async function () {
+      try {
+        const user = await axios.post(
+          "https://jsonplaceholder.typicode.com/users",
+          this.user
+        );
+
+        console.log(user);
+        if (user) {
+          return this.$router.push("/");
+        } else {
+          return this.$router.push("/users/create");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  },
 };
 </script>
 <style scoped></style>
