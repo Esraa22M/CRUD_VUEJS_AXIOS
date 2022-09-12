@@ -41,9 +41,13 @@ body {
 }
 .listAll_header {
   font-size: 1.25rem;
+  text-transform: uppercase;
   letter-spacing: 1.5px;
   line-height: 2rem;
 }
 .listAll__header--container {
   display: flex;
+}
+.spinner {
+  width: 14rem;
 }
