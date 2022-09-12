@@ -15,9 +15,11 @@
             id="inputName"
             v-model="user.name"
             aria-describedby="Name"
+            @keyup="checkName"
             placeholder="Enter Name"
-            @blur="validateEmail"
           />
+          <div v-if="error" class="alert">{{ error }}</div>
+
           <label for="exampleInputEmail1" class="sr-only">Email address</label>
           <input
             type="email"
@@ -49,7 +51,6 @@ export default {
   name: "CreateOne",
   data: function () {
     return {
-      email: "",
       user: {
         name: "",
         username: "",
@@ -59,14 +60,15 @@ export default {
         website: "",
         company: {},
       },
+      error: "",
     };
   },
   methods: {
-    validateEmail() {
-      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
-        this.email = "Invalid Email";
+    checkName() {
+      if (/[^a-zA-Z]/.test(this.user.name)) {
+        this.error = "Input value contains other syantax.";
       } else {
-        this.email = "";
+        this.error = "";
       }
     },
     submitCreate: async function () {

@@ -1,29 +1,5 @@
-# crud
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* crud operations using bootstrap5 && vue version3 and axios
+* * you can create new user or update it or view it or delete it and list them all
+* * to run the application use npm i to install all dependencies
+* * to run use npm run server
+* * if you face any trouble run it npm run lint --fix

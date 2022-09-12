@@ -14,20 +14,6 @@
           USER
         </router-link>
       </div>
-      <div class="row mt-3 d-flex justify-content-center">
-        <form class="form-inline col-md-4 d-flex">
-          <label class="sr-only" for="inlineFormInputName2">Name</label>
-          <input
-            type="text"
-            class="form-control m-2"
-            id="inlineFormInputName2"
-            placeholder="User Name"
-          />
-          <button type="submit" class="btn background-color-primary mb-2">
-            Find
-          </button>
-        </form>
-      </div>
     </div>
 
     <!-- spinner -->
@@ -77,15 +63,17 @@
                 >
                   <i class="fa fa-eye"></i>
                 </router-link>
-                <router-link to="/users/edit/:id" class="btn btn-dark mb-1">
+                <router-link
+                  :to="`/users/edit/${user.id}`"
+                  class="btn btn-dark mb-1"
+                >
                   <i class="fa fa-pen"></i>
                 </router-link>
-                <router-link
-                  to="/users/delete"
+                <button
                   class="btn btn-danger d-flex align-items-center justify-content-center"
                 >
-                  <i class="fa fa-trash"></i>
-                </router-link>
+                  <i class="fa fa-trash" @click="deleteUser(user.id)"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -122,7 +110,18 @@ export default {
         this.loading = false;
       }
     },
+    async deleteUser(id) {
+      let x = window.confirm("You want to delete the user?");
 
+      if (x) {
+        const user = await axios.delete(
+          "https://jsonplaceholder.typicode.com/users" + id
+        );
+
+        console.log(user);
+        alert("User deleted!");
+      }
+    },
     // getUsers: async function () {
     //   try {
     //     console.log("hello");
